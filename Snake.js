@@ -1,12 +1,12 @@
-let blockSize = 25
+let grip_size = 25
 let rows = 20
 let cols = 20
 let canvas
 let ctx
 
 
-let snakeX = blockSize * 5
-let snakeY = blockSize * 5
+let snakeX = grip_size * 5
+let snakeY = grip_size * 5
 
 let vectorX = 0
 let vectorY = 0
@@ -21,8 +21,8 @@ let gameover = false
 
 window.onload = function () {
     canvas = document.getElementById("canvas")
-    canvas.width = rows * blockSize
-    canvas.height = cols * blockSize
+    canvas.width = rows * grip_size
+    canvas.height = cols * grip_size
     ctx = canvas.getContext('2d')
     getRandonNumber()
     document.addEventListener('keydown', control)
@@ -40,7 +40,7 @@ function update() {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     ctx.fillStyle = "lime"
-    ctx.fillRect(foodX, foodY, blockSize, blockSize)
+    ctx.fillRect(foodX, foodY, grip_size, grip_size)
 
     if (snakeX == foodX && snakeY == foodY) {
         snakeBody.push([foodX, foodY])
@@ -54,27 +54,27 @@ function update() {
     }
 
     ctx.fillStyle = " red "
-    snakeX += vectorX * blockSize
-    snakeY += vectorY * blockSize
-    ctx.fillRect(snakeX, snakeY, blockSize, blockSize)
+    snakeX += vectorX * grip_size
+    snakeY += vectorY * grip_size
+    ctx.fillRect(snakeX, snakeY, grip_size, grip_size)
     ctx.fillStyle = "white"
     for (let i = 0; i < snakeBody.length; i++) {
-        ctx.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize)
+        ctx.fillRect(snakeBody[i][0], snakeBody[i][1], grip_size, grip_size)
     }
 
     if(snakeX < 0){
-        snakeX = canvas.width - blockSize
+        snakeX = canvas.width - grip_size
     }
 
-    if( snakeX >  canvas.width - blockSize ){
+    if( snakeX >  canvas.width - grip_size){
         snakeX = 0 
     }
 
     if(snakeY < 0){
-        snakeY = canvas.width - blockSize
+        snakeY = canvas.width - grip_size
     }
 
-    if( snakeY > canvas.width - blockSize){
+    if( snakeY > canvas.width - grip_size){
         snakeY = 0 
     }
 
@@ -90,8 +90,8 @@ function update() {
 }
 
 
-function control(c) {
-    switch (c.keyCode) {
+function control(evt) {
+    switch (evt.keyCode) {
         case 37:
             if( vectorX == 1) break
             vectorX = -1;
@@ -119,8 +119,8 @@ function control(c) {
 
 function getRandonNumber() {
 
-    foodX = Math.floor(Math.random() * cols) * blockSize
-    foodY = Math.floor(Math.random() * cols) * blockSize
+    foodX = Math.floor(Math.random() * cols) * grip_size
+    foodY = Math.floor(Math.random() * rows) * grip_size
 
 }
 
